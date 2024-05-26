@@ -31,6 +31,31 @@ model_output:
   filepath: data/07_model_output/model_output.csv
 
 # Model
-trained_model:
-  type: pickle.PickleDataset
-  filepath: data/06_models/trained_model.pkl
+trained_models:
+  type: kedro_mlflow.io.artifacts.MlflowArtifactDataset
+  dataset:
+    type: pickle.PickleDataset
+    filepath: data/06_models/trained_models.pkl
+
+tuned_models:
+  type: kedro_mlflow.io.artifacts.MlflowArtifactDataset
+  dataset:
+    type: pickle.PickleDataset
+    filepath: data/06_models/tuned_models.pkl
+
+X_train_data:
+  type: pandas.CSVDataset
+  filepath: data/05_model_input/X_train.csv
+
+y_train_data:
+  type: pandas.CSVDataset
+  filepath: data/05_model_input/y_train.csv
+
+
+X_test_data:
+  type: pandas.CSVDataset
+  filepath: data/05_model_input/X_test.csv
+
+y_test_data:
+  type: pandas.CSVDataset
+  filepath: data/05_model_input/y_test.csv
