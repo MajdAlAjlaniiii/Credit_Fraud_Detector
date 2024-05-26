@@ -1,0 +1,36 @@
+# conf/base/catalog.yml
+
+# Raw input data
+creditcard_data:
+  type: pandas.CSVDataset
+  filepath: data/01_raw/creditcard.csv
+
+# Intermediate datasets
+intermediate_data:
+  type: pandas.CSVDataset
+  filepath: data/02_intermediate/intermediate_data.csv
+
+# Primary datasets
+preprocessed_data:
+  type: pandas.CSVDataset
+  filepath: data/03_primary/preprocessed_data.csv
+
+# Feature engineered datasets
+feature_data:
+  type: pandas.CSVDataset
+  filepath: data/04_feature/feature_data.csv
+
+# Model input datasets
+model_input_data:
+  type: pandas.CSVDataset
+  filepath: data/05_model_input/model_input_data.csv
+
+# Model output datasets
+model_output:
+  type: pandas.CSVDataset
+  filepath: data/07_model_output/model_output.csv
+
+# Model
+trained_model:
+  type: pickle.PickleDataset
+  filepath: data/06_models/trained_model.pkl
