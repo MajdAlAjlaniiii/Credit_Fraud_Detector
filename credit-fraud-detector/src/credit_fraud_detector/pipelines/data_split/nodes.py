@@ -1,6 +1,6 @@
 import numpy as np
 import pandas as pd
-from sklearn.model_selection import StratifiedKFold
+from sklearn.model_selection import StratifiedKFold, train_test_split
 
 def split_data(df: pd.DataFrame):
     print('No Frauds', round(df['Class'].value_counts()[0] / len(df) * 100, 2), '% of the dataset')
@@ -30,3 +30,9 @@ def split_data(df: pd.DataFrame):
     print(test_counts_label / len(original_ytest))
 
     return (original_Xtrain, original_Xtest, original_ytrain, original_ytest)
+
+def split_data2(df: pd.DataFrame):
+    X = df.drop('Class', axis=1)
+    y = df['Class']
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    return X_train, X_test, y_train, y_test
