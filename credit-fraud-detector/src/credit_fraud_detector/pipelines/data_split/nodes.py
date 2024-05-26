@@ -21,8 +21,8 @@ def split_data(df: pd.DataFrame):
     original_ytrain = original_ytrain.values
     original_ytest = original_ytest.values
 
-    train_unique_label, train_counts_label = np.unique(original_ytrain, return_counts=True)
-    test_unique_label, test_counts_label = np.unique(original_ytest, return_counts=True)
+    _, train_counts_label = np.unique(original_ytrain, return_counts=True)
+    _, test_counts_label = np.unique(original_ytest, return_counts=True)
     print('-' * 100)
 
     print('Label Distributions: \n')
