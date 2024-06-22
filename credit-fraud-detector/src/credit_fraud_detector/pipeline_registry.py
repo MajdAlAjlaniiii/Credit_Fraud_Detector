@@ -10,6 +10,7 @@ from credit_fraud_detector.pipelines import dimensionality_reduction
 from credit_fraud_detector.pipelines import model_training
 from credit_fraud_detector.pipelines import model_evaluation
 from credit_fraud_detector.pipelines import upload_feature_store
+from credit_fraud_detector.pipelines import download_feature_store
 
 
 def register_pipelines() -> Dict[str, Pipeline]:
@@ -20,6 +21,7 @@ def register_pipelines() -> Dict[str, Pipeline]:
     """
     data_preprocessing_pipeline = data_preprocessing.create_pipeline()
     upload_feature_store_pipeline = upload_feature_store.create_pipeline()
+    download_feature_store_pipeline = download_feature_store.create_pipeline()
     data_split_pipeline = data_split.create_pipeline()
     dimensionality_reduction_pipeline = dimensionality_reduction.create_pipeline()
     model_training_pipeline = model_training.create_pipeline()
@@ -31,5 +33,6 @@ def register_pipelines() -> Dict[str, Pipeline]:
         "dimensionality_reduction": dimensionality_reduction_pipeline,
         "model_training": model_training_pipeline,
         "model_evaluation": model_evaluation_pipeline,
-        "__default__": data_preprocessing_pipeline + data_split_pipeline + dimensionality_reduction_pipeline + model_training_pipeline + model_evaluation_pipeline + upload_feature_store_pipeline
+        "model_evaluation": download_feature_store_pipeline,
+        "__default__": data_preprocessing_pipeline + download_feature_store_pipeline + data_split_pipeline + dimensionality_reduction_pipeline + model_training_pipeline + model_evaluation_pipeline + upload_feature_store_pipeline
     }
