@@ -149,3 +149,9 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+# Bloat local files (may be important on deploy)
+mlruns/
+.telemetry
+*.db
+stats.json
