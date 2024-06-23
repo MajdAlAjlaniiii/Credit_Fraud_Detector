@@ -33,6 +33,6 @@ def register_pipelines() -> Dict[str, Pipeline]:
         "dimensionality_reduction": dimensionality_reduction_pipeline,
         "model_training": model_training_pipeline,
         "model_evaluation": model_evaluation_pipeline,
-        "model_evaluation": download_feature_store_pipeline,
+        "download_feature_store": download_feature_store_pipeline,
         "__default__": data_preprocessing_pipeline + download_feature_store_pipeline + data_split_pipeline + dimensionality_reduction_pipeline + model_training_pipeline + model_evaluation_pipeline + upload_feature_store_pipeline
     }
