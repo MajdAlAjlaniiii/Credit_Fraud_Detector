@@ -8,6 +8,7 @@ import streamlit.components.v1 as components
 from pathlib import Path
 from dotenv import load_dotenv
 from kedro.framework.project import configure_project
+from modules.nav import NavigationBar
 
 # Page configuration
 load_dotenv()
@@ -20,9 +21,10 @@ if 'kedro_viz_started' not in st.session_state:
 
 st.set_page_config(
     page_title="Pipelines",
-    page_icon="./pastel-de-nata.png",
+    page_icon="./images/pastel-de-nata.png",
     layout='wide')
 
+NavigationBar()
 
 # Page content
 st.markdown(

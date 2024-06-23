@@ -1,13 +1,18 @@
 import os
 import pandas as pd
 import streamlit as st
+from modules.nav import NavigationBar
 
 # Page configuration
 st.set_page_config(
     page_title="Data sources",
-    page_icon="./pastel-de-nata.png",
+    page_icon="./images/pastel-de-nata.png",
     layout='wide')
 
+NavigationBar()
+
+
+# Page content
 st.markdown(
     '''
     # Here you can see our data during different phases of our pipeline.
@@ -28,7 +33,6 @@ def get_data(choice: str):
 
     path = os.path.join('..', 'data', df_choice)
     files = [os.path.join(path, f) for f in os.listdir(path) if os.path.isfile(os.path.join(path, f))]
-    print(files)
     csv = files[0]
 
     data = pd.read_csv(csv)
@@ -38,4 +42,4 @@ def get_data(choice: str):
 choice = st.radio('Select the level:', ('Raw', 'Preprocessed', 'From feature store'))
 
 df = get_data(choice)
-st.dataframe(df)
+st.dataframe(df.head(5))
