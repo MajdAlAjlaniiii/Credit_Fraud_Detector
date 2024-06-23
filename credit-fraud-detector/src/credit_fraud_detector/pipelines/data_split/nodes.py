@@ -1,5 +1,8 @@
 import numpy as np
 import pandas as pd
+import logging
+from typing import Any, Dict, Tuple
+
 from sklearn.model_selection import StratifiedKFold, train_test_split
 
 def split_data(df: pd.DataFrame):
@@ -31,8 +34,17 @@ def split_data(df: pd.DataFrame):
 
     return (original_Xtrain, original_Xtest, original_ytrain, original_ytest)
 
-def split_data2(df: pd.DataFrame):
-    X = df.drop('Class', axis=1)
-    y = df['Class']
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+def split_data2(df: pd.DataFrame, parameters: Dict[str, Any]):
+    """Splits data into features and target training and test sets.
+
+    Args:
+        data: Data containing features and target.
+        parameters: Parameters defined in parameters.yml.
+    Returns:
+        Split data.
+    """
+    y = df[parameters["target_column"]]
+    X = df.drop(columns=parameters["target_column"], axis=1)
+
+    X_train, X_test, y_train, y_test = train_test_split(X, y, stratify=y, test_size=parameters["test_fraction"], random_state=parameters["random_state"])
     return X_train, X_test, y_train, y_test

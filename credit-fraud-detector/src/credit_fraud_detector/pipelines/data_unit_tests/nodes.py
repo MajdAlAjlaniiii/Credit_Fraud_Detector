@@ -80,8 +80,8 @@ def test_data(df):
         ExpectationConfiguration(
             expectation_type="expect_column_values_to_be_between",
             kwargs={
-                "column": "scaled_mount",
-                "min_value": 0,
+                "column": "scaled_amount",
+                "min_value": df["scaled_amount"].min(), 
                 "max_value": df["scaled_amount"].max()
             }
         ),
@@ -163,6 +163,7 @@ def test_data(df):
 
     pd_df_ge = gx.from_pandas(df)
 
+    assert pd_df_ge.expect_column_values_to_be_of_type("scaled_time", "float64").success == True
     assert pd_df_ge.expect_column_values_to_be_of_type("scaled_amount", "float64").success == True
     assert pd_df_ge.expect_column_values_to_be_of_type("Class", "int64").success == True
 
