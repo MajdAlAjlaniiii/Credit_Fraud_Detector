@@ -1,6 +1,11 @@
+import sys; sys.path.append('..')
+
+import pandas as pd
 import streamlit as st
 from modules.nav import NavigationBar
-from modules.stout import DisplayPipeExecution
+from modules.pipes import DisplayPipeExecution
+from src.credit_fraud_detector.pipelines.download_feature_store.nodes import download_from_feature_store
+
 
 
 # Page configuration
@@ -41,7 +46,14 @@ if data_button:
     with col1:
         DisplayPipeExecution(pipe_tag=pipe_tag)
     with col2:
-        st.image('./images/pastel-de-nata.png', caption='PLACEHOLDER FOR RETURN')
+        fs_df = None
+        while not isinstance(fs_df, pd.DataFrame):
+            info_box = st.empty()
+            info_box.info('Downloading data from Hopsworks')
+            fs_df = download_from_feature_store()
+        info_box.empty()
+        st.dataframe(fs_df)
+
 
 elif train_button:
     data_button = False

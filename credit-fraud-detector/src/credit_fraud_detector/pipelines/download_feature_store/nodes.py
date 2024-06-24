@@ -3,7 +3,6 @@ import hopsworks
 import pandas as pd
 from dotenv import load_dotenv
 from typing import Union
-from termcolor import cprint
 from operator import attrgetter
 
 load_dotenv()
