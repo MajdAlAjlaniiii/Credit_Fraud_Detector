@@ -1,19 +1,6 @@
 import streamlit as st
-import subprocess
 from modules.nav import NavigationBar
-
-# Page auxiliary functions
-def run_pipeline(pipe_tag):
-    command = ['kedro', 'run', '--tags', pipe_tag]
-    process = subprocess.Popen(command, cwd='../', stdout=subprocess.PIPE, stderr=subprocess.STDOUT, universal_newlines=True)
-
-    placeholder = st.empty()
-    with placeholder.container(height=250):
-        while process.poll() is None:
-            line = process.stdout.readline()
-            if not line:
-                continue
-            st.write(line.strip())
+from modules.stout import DisplayPipeExecution
 
 
 # Page configuration
@@ -52,7 +39,7 @@ if data_button:
     train_button = False
     pipe_tag = 'data'
     with col1:
-        run_pipeline(pipe_tag=pipe_tag)
+        DisplayPipeExecution(pipe_tag=pipe_tag)
     with col2:
         st.image('./images/pastel-de-nata.png', caption='PLACEHOLDER FOR RETURN')
 
@@ -60,6 +47,6 @@ elif train_button:
     data_button = False
     pipe_tag = 'train'
     with col1:
-        run_pipeline(pipe_tag=pipe_tag)
+        DisplayPipeExecution(pipe_tag=pipe_tag)
     with col2:
         st.image('./images/pastel-de-nata.png', caption='PLACEHOLDER FOR RETURN')
