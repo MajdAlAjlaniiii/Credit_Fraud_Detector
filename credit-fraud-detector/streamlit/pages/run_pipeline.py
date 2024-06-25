@@ -79,4 +79,4 @@ elif train_button:
 
         st.markdown('The evaluation results were:')
         st.dataframe(scores_df)
-        st.write(f'The best model was: {best_result.index[0]} || Recall: {best_result.values[0]:.2f}')
+        st.write(f'The best model was: {best_result.name} || Recall: {best_result.values[0]:.2f}')
