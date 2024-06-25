@@ -59,3 +59,15 @@ evaluation_reports:
 reporting_tests:
   type: pandas.CSVDataset
   filepath: data/08_reporting/data_tests.csv
+
+ref_data:
+  type: pandas.CSVDataset
+  filepath: data/02_intermediate/ref_data.csv
+
+ana_data:
+  type: pandas.CSVDataset
+  filepath: data/02_intermediate/ana_data.csv
+
+drift_result:
+  type: pandas.CSVDataSet
+  filepath: data/08_reporting/drift_result.csv

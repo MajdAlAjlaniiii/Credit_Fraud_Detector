@@ -18,10 +18,11 @@ from .nodes import split_data, split_data2
 #     ])
 
 def create_pipeline(**kwargs) -> Pipeline:
+
     return Pipeline([
         node(
             func=split_data2,
-            inputs="feature_data",
+            inputs=["feature_data", "parameters"],
             outputs= ["X_train_data","X_test_data","y_train_data","y_test_data"],
             name="split_data_node",
         ),
