@@ -9,4 +9,4 @@ def create_pipeline(**kwargs) -> Pipeline:
             outputs='feature_data',
             name="download_feature_store",
         ),
-    ])
+    ], tags='train')
