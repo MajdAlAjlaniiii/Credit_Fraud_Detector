@@ -1,7 +1,11 @@
 import sys; sys.path.append('..')
 
+import os
+import json
+
 import pandas as pd
 import streamlit as st
+
 from modules.nav import NavigationBar
 from modules.pipes import DisplayPipeExecution
 from src.credit_fraud_detector.pipelines.download_feature_store.nodes import download_from_feature_store
@@ -46,11 +50,9 @@ if data_button:
     with col1:
         DisplayPipeExecution(pipe_tag=pipe_tag)
     with col2:
-        fs_df = None
-        while not isinstance(fs_df, pd.DataFrame):
-            info_box = st.empty()
-            info_box.info('Downloading data from Hopsworks')
-            fs_df = download_from_feature_store()
+        info_box = st.empty()
+        info_box.info('Downloading data from Hopsworks')
+        fs_df = download_from_feature_store()
         info_box.empty()
         st.dataframe(fs_df)
 
@@ -61,4 +63,20 @@ elif train_button:
     with col1:
         DisplayPipeExecution(pipe_tag=pipe_tag)
     with col2:
-        st.image('./images/pastel-de-nata.png', caption='PLACEHOLDER FOR RETURN')
+        info_box = st.empty()
+        info_box.info('Generating evaluation results')
+
+        json_path = os.path.join('..', 'data', '08_reporting', 'evaluation_reports.json')
+        with open(json_path, 'r') as f:
+            js = json.load(f)
+
+        scores = {k: v['weighted avg']['recall'] for k, v in js.items()}
+        scores_df = pd.DataFrame({'Weighted Recall': scores.values()}, index=scores.keys()) \
+            .sort_values(by='Weighted Recall', ascending=False)
+        best_result = scores_df.iloc[0]
+
+        info_box.empty()
+
+        st.markdown('The evaluation results were:')
+        st.dataframe(scores_df)
+        st.write(f'The best model was: {best_result.index[0]} || Recall: {best_result.values[0]:.2f}')
