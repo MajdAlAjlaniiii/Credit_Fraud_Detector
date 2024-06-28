@@ -1,3 +1,4 @@
+
 import os
 import requests
 import subprocess
@@ -8,8 +9,8 @@ import streamlit.components.v1 as components
 from time import sleep
 from pathlib import Path
 from dotenv import load_dotenv
-from modules.nav import NavigationBar
 from kedro.framework.project import configure_project
+from modules.nav import NavigationBar
 
 # Page configuration
 load_dotenv()
@@ -24,31 +25,36 @@ st.set_page_config(
 
 NavigationBar()
 
-def run_kedro_viz():
-    if not st.session_state['kedro_viz_started']:
-        st.session_state['kedro_viz_started'] = True
-        subprocess.Popen(['kedro', 'viz', '--no-browser'], cwd='../', shell=False,
-                         stderr=subprocess.PIPE, stdout=subprocess.PIPE)
+def run_mlflow():
+    try:
+        server = requests.get(os.environ.get('MLFLOW_SERVER'))
+        if server.status_code == 200:
+            st.session_state['mlflow_started'] = True
+    except:
+        if not st.session_state['mlflow_started']:
+            st.session_state['mlflow_started'] = True
+            subprocess.Popen(['mlflow', 'server'], cwd='../', shell=False,
+                            stderr=subprocess.PIPE, stdout=subprocess.PIPE)
 
-def show_pipeline_viz():
+def show_mlflow_ui():
     st.subheader('PIPELINE VISUALIZATION')
 
     reporter = st.info('Starting server...')
 
-    run_kedro_viz()
+    run_mlflow()
 
     sleep(5)
-    resp = requests.get(os.environ.get('KEDRO_VIZ'))
+    resp = requests.get(os.environ.get('MLFLOW_SERVER'))
     while not resp and resp.status_code == 200:
         reporter.info('Waiting for server start...')
-        resp = requests.get(os.environ.get('KEDRO_VIZ'))
+        resp = requests.get(os.environ.get('MLFLOW_SERVER'))
 
     reporter.empty()
 
 
-    if st.session_state['kedro_viz_started']:
+    if st.session_state['mlflow_started']:
         st.caption('This is interactive')
-        components.iframe(os.environ.get('KEDRO_VIZ'), width=1400, height=900)
+        components.iframe(os.environ.get('MLFLOW_SERVER'), width=1400, height=900)
 
 
 # Page content
@@ -59,4 +65,4 @@ st.markdown(
 )
 
 
-show_pipeline_viz()
+show_mlflow_ui()

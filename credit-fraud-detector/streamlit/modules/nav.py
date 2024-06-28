@@ -6,3 +6,4 @@ def NavigationBar():
         st.page_link('pages/data.py', label='Check the data', icon='📊')
         st.page_link('pages/pipeline.py', label='Visualize the pipelines', icon='🪠')
         st.page_link('pages/run_pipeline.py', label='Run the pipelines', icon='🪄')
+        st.page_link('pages/mlflow.py', label='Check the logs', icon='📜')
