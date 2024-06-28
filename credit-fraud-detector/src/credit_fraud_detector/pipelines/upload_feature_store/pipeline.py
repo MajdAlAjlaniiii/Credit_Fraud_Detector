@@ -8,5 +8,6 @@ def create_pipeline(**kwargs) -> Pipeline:
             inputs="preprocessed_data",
             outputs=None,
             name="upload_feature_store",
+            tags='data'
         ),
     ])

@@ -26,4 +26,4 @@ def create_pipeline(**kwargs) -> Pipeline:
             outputs= ["X_train_data","X_test_data","y_train_data","y_test_data"],
             name="split_data_node",
         ),
-    ])
+    ], tags='train')
