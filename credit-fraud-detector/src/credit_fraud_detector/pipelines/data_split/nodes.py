@@ -35,7 +35,7 @@ def split_data(df: pd.DataFrame):
     return (original_Xtrain, original_Xtest, original_ytrain, original_ytest)
 
 def split_data2(
-    data: pd.DataFrame, parameters: Dict[str, Any]
+    df: pd.DataFrame, parameters: Dict[str, Any]
 ) -> Tuple[pd.DataFrame, pd.DataFrame, pd.Series, pd.Series]:
     """Splits data into features and target training and test sets.
 
