@@ -69,5 +69,5 @@ ana_data:
   filepath: data/02_intermediate/ana_data.csv
 
 drift_result:
-  type: pandas.CSVDataSet
+  type: pandas.CSVDataset
   filepath: data/08_reporting/drift_result.csv
