@@ -7,3 +7,4 @@ def NavigationBar():
         st.page_link('pages/pipeline.py', label='Visualize the pipelines', icon='🪠')
         st.page_link('pages/run_pipeline.py', label='Run the pipelines', icon='🪄')
         st.page_link('pages/mlflow.py', label='Check the logs', icon='📜')
+        st.page_link('pages/data_drift.py', label='Simulate data drift', icon='🔓')

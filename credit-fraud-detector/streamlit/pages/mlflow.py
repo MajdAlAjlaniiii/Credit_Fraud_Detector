@@ -37,7 +37,7 @@ def run_mlflow():
                             stderr=subprocess.PIPE, stdout=subprocess.PIPE)
 
 def show_mlflow_ui():
-    st.subheader('PIPELINE VISUALIZATION')
+    st.subheader('MLFlow server')
 
     reporter = st.info('Starting server...')
 
@@ -60,7 +60,7 @@ def show_mlflow_ui():
 # Page content
 st.markdown(
     '''
-    # Here you can check our pipelines, developed with Kedro.
+    # Here you can check our MLFlow Client, with our logs.
     '''
 )
 
