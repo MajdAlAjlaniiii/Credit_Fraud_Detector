@@ -32,6 +32,11 @@ tuned_models:
   dataset:
     type: pickle.PickleDataset
     filepath: data/06_models/tuned_models.pkl
+champion_model:
+  type: kedro_mlflow.io.artifacts.MlflowArtifactDataset
+  dataset:
+    type: pickle.PickleDataset
+    filepath: data/06_models/champion_model.pkl
 
 X_train_data:
   type: pandas.CSVDataset
