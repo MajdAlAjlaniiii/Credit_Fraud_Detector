@@ -28,7 +28,7 @@ def select_model(X_train, y_train, models):
             logger.error(f"No parameters defined for model: {name}")
             continue
 
-        with mlflow.start_run(experiment_id=experiment_id, run_name=f"tuning_{name}", nested=True):
+        with mlflow.start_run(experiment_id=experiment_id, run_name=f"tuning_{name}", nested=True) as run:
             mlflow.sklearn.autolog()  # Enable autologging for sklearn models
 
             try:
@@ -51,8 +51,14 @@ def select_model(X_train, y_train, models):
                 # Set tags for model version (example: experiment name)
                 mlflow.set_tag(name, "experiment", "tuning_experiment")
 
+                client = mlflow.MlflowClient()
+                try:
+                    client.create_registered_model(name)
+                except:
+                    client.get_registered_model(name)
+                model_version = client.create_model_version(name, "champion_model_alias", run.info.run_id)
                 # Set registered model alias (example: champion model alias)
-                mlflow.set_registered_model_alias(name, "champion_model_alias")
+                client.set_registered_model_alias(name, "champion_model_alias", model_version.version)
 
                 # Optionally, log specific metrics on training data (example: training accuracy)
                 y_train_pred = best_model.predict(X_train)
