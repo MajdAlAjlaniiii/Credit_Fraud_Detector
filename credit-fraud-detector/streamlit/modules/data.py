@@ -9,22 +9,22 @@ def get_data(choice: str) -> pd.DataFrame:
     choice_map = {
         'Raw': '01_raw',
         'Preprocessed': '03_primary',
-        'From feature store': '04_feature'
+        'From feature store': '04_feature',
+        'Drift': '02_intermediate',
+        'Drift Analysis': '08_reporting'
     }
 
     df_choice = choice_map[choice]
 
     path = os.path.join('..', 'data', df_choice)
-    files = [os.path.join(path, f) for f in os.listdir(path) if os.path.isfile(os.path.join(path, f))]
-    csv = files[0]
+    files = [os.path.join(path, f) for f in os.listdir(path) if f.endswith('.csv')]
+    csv = files[1] if choice == 'Drift' else files[0]
 
     data = pd.read_csv(csv)
 
     return data
 
 def plot_feats(df):
-    st.markdown('## Features')
-
     fig, ax = plt.subplots(2, 2, figsize=(15, 7))
 
     try:

@@ -9,4 +9,4 @@ def create_pipeline(**kwargs) -> Pipeline:
             outputs="preprocessed_data",
             name="load_and_preprocess_data_node",
         ),
-    ], tags='data')
+    ], tags=['data', 'drift'])

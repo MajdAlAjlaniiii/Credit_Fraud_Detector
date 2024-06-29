@@ -46,4 +46,5 @@ for p in ax.patches:
 st.pyplot(fig)
 
 # Visualization of Features
+st.markdown('## Features')
 plot_feats(df)
