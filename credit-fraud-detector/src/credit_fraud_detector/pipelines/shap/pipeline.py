@@ -6,7 +6,7 @@ def create_pipeline(**kwargs) -> Pipeline:
         [
             node(
                 func=calculate_and_plot_shap,
-                inputs=["trained_models", "preprocessed_data"],
+                inputs=["champion_model", "X_train_data"],
                 outputs=None,
                 name="calculate_and_plot_shap",
             ),
