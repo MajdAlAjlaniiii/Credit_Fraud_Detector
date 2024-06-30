@@ -6,6 +6,10 @@ This is your new Kedro project with Kedro-Viz setup, which was generated using `
 
 Take a look at the [Kedro documentation](https://docs.kedro.org) to get started.
 
+## Dataset
+
+Download dataset from [https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud]
+
 ## Rules and guidelines
 
 In order to get the best out of the template:
