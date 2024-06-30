@@ -1,10 +1,11 @@
 import streamlit as st
 import seaborn as sns
 import matplotlib.pyplot as plt
+import streamlit.components.v1 as components
 
 from modules.nav import NavigationBar
+from modules.data import get_data, plot_feats, get_report
 from modules.pipes import DisplayPipeExecution
-from modules.data import get_data, plot_feats
 
 
 
@@ -55,3 +56,7 @@ else:
     axs[1].set_title(f'{bad_column.capitalize()} after drift', fontsize=14)
 
     st.pyplot(fig)
+
+    st.markdown('### Full report')
+    soup = get_report()
+    components.html(soup, width=1400, height=900, scrolling=True)

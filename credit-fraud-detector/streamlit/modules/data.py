@@ -4,6 +4,8 @@ import seaborn as sns
 import streamlit as st
 import matplotlib.pyplot as plt
 
+from bs4 import BeautifulSoup
+
 @st.cache_data
 def get_data(choice: str) -> pd.DataFrame:
     choice_map = {
@@ -54,3 +56,10 @@ def plot_feats(df):
     ax[1][1].set_xlim([min(v2), max(v2)])
 
     st.pyplot(fig)
+
+
+def get_report():
+    with open(os.path.join('..', 'data', '08_reporting', 'data_drift_report.html'), 'r') as f:
+        text = f.read()
+
+    return text
