@@ -113,7 +113,7 @@ And if you want to run an IPython session:
 kedro ipython
 ```
 
-### How to run Streamlit
+## How to run Streamlit
 To run the Streamlit app for this project, navigate to the streamlit/ directory and use the following command:
 
 ```
