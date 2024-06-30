@@ -38,7 +38,7 @@ kedro run
 Have a look at the files `src/tests/test_run.py` and `src/tests/pipelines/data_science/test_pipeline.py` for instructions on how to write your tests. Run the tests as follows:
 
 ```
-pytest
+pytest tests
 ```
 
 To configure the coverage threshold, look at the `.coveragerc` file.
@@ -87,6 +87,16 @@ And if you want to run an IPython session:
 ```
 kedro ipython
 ```
+
+### How to run Streamlit
+To run the Streamlit app for this project, navigate to the streamlit/ directory and use the following command:
+
+```
+cd streamlit/
+
+make run_streamlit
+```
+This will start the Streamlit server, and you can access the app in your web browser.`
 
 ### How to ignore notebook output cells in `git`
 To automatically strip out all output cell contents before committing to `git`, you can use tools like [`nbstripout`](https://github.com/kynan/nbstripout). For example, you can add a hook in `.git/config` with `nbstripout --install`. This will run `nbstripout` before anything is committed to `git`.
