@@ -37,10 +37,10 @@ The project is structured using the Kedro framework, which ensures modularity, r
 
 ## **Main MLOps Tools used**
 
-Kedro: For organizing pipelines and modularizing code.
-Hopsworks: For creating and managing a feature store.
-MLFlow: For tracking pipeline executions, hyperparameter tuning experiments, and model comparisons.
-SHAP Values: For model explainability.
-Data Drift Tests: For monitoring changes in data distribution over time.
-Data Unit Tests: For ensuring data integrity and correctness.
-Streamlit: For developing interactive, user-friendly applications to visualize model results and performance metrics.
+- **Kedro**: For organizing pipelines and modularizing code.
+- **Hopsworks**: For creating and managing a feature store.
+- **MLFlow**: For tracking pipeline executions, hyperparameter tuning experiments, and model comparisons.
+- **SHAP Values**: For model explainability.
+- **Data Drift Tests**: For monitoring changes in data distribution over time.
+- **Data Unit Tests**: For ensuring data integrity and correctness.
+- **Streamlit**: For developing interactive, user-friendly applications to visualize model results and performance metrics.
