@@ -33,6 +33,31 @@ You can run your Kedro project with:
 kedro run
 ```
 
+### How to run separate pipelines
+You can run individual pipelines in your Kedro project by specifying the pipeline name with the --pipeline option. The available pipelines in this project are:
+
+- data_drift
+- data_preprocessing
+- data_split
+- data_unit_tests
+- download_feature_store
+- model_evaluation
+- model_selection
+- model_training
+- shap
+- upload_feature_store
+  
+To run a specific pipeline, use the following command:
+
+```
+kedro run --pipeline=<pipeline_name>
+```
+
+For example, to run the data_preprocessing pipeline:
+```
+kedro run --pipeline=data_preprocessing
+```
+
 ## How to test your Kedro project
 
 Have a look at the files `src/tests/test_run.py` and `src/tests/pipelines/data_science/test_pipeline.py` for instructions on how to write your tests. Run the tests as follows:
