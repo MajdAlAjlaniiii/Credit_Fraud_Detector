@@ -42,5 +42,10 @@ The project is structured using the Kedro framework, which ensures modularity, r
 - **MLFlow**: For tracking pipeline executions, hyperparameter tuning experiments, and model comparisons.
 - **SHAP Values**: For model explainability.
 - **Data Drift Tests**: For monitoring changes in data distribution over time.
-- **Data Unit Tests**: For ensuring data integrity and correctness.
+- **Pytest**: For data unit tests, ensuring data integrity and correctness.
+- **Great Expectations**: data unit tests - For ensuring data integrity and correctness.
+- **Evidently**: For data and model monitoring to detect issues and changes over time.
+- **NannyML**: For monitoring model performance in production.
 - **Streamlit**: For developing interactive, user-friendly applications to visualize model results and performance metrics.
+
+
